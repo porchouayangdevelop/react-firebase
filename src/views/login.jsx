@@ -62,6 +62,7 @@ export default function login() {
       position: "top-end",
       toast: true,
       timerProgressBar: true,
+      background: "#69F0AE",
     });
   };
 
@@ -91,6 +92,26 @@ export default function login() {
       showConfirmButton: false,
       toast: true,
       timerProgressBar: true,
+      color: "red",
+      background: "#D7CCC8",
+    });
+  };
+
+  const toasEmpty = () => {
+    Swal.fire({
+      title: "Error",
+      text: "this field is empty",
+      icon: "warning",
+      timer: 2000,
+      position: "top-end",
+      showConfirmButton: false,
+      toast: true,
+      timerProgressBar: true,
+      // color: "red",
+      html: "<span style='color:red;'>This field is empty</span>",
+      willOpen: () => {
+        Swal.showLoading();
+      },
     });
   };
 
@@ -101,6 +122,7 @@ export default function login() {
     };
     if (data.username === "" || data.password === "") {
       setIsvalid(false);
+      toasEmpty();
     } else if (data.password === "") {
       setIsvalid(false);
     } else {
